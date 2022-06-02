@@ -1,16 +1,34 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
+import { AwsCustomResource, PhysicalResourceId } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import { CustomerContactService } from './customer-contact-service';
+import { EventAuditService } from './event-audit-service';
+import { FrontendApiService } from './frontend-api-service';
+import { NotificationService } from './notification-service';
+import { ReviewAnalysisService } from './review-analysis-service';
+import { SharedResources } from './shared-resources';
 
 export class EventDrivenServerlessCdkTsStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    let sharedStack = new SharedResources(this, 'sharedResources');
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'EventDrivenServerlessCdkTsQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
+    new FrontendApiService(this, 'apiStack', {
+      centralEventBridge: sharedStack.centralEventBus
+    });
+
+    // new ReviewAnalysisService(this, 'sentimentAnalysis', {
+    //   centralEventBus: sharedStack.centralEventBus
     // });
+
+    // new EventAuditService(this, 'eventAuditService');
+
+    // new NotificationService(this, 'notificationService', {
+    //   centralEventBus: sharedStack.centralEventBus
+    // });
+
+    // new CustomerContactService(this, 'customerContactService');
+
   }
 }
