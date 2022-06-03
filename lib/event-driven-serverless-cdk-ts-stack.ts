@@ -18,17 +18,17 @@ export class EventDrivenServerlessCdkTsStack extends Stack {
       centralEventBridge: sharedStack.centralEventBus
     });
 
-    // new ReviewAnalysisService(this, 'sentimentAnalysis', {
-    //   centralEventBus: sharedStack.centralEventBus
-    // });
+    new ReviewAnalysisService(this, 'sentimentAnalysis', {
+      centralEventBus: sharedStack.centralEventBus
+    });
 
-    // new EventAuditService(this, 'eventAuditService');
+    new EventAuditService(this, 'eventAuditService');
 
-    // new NotificationService(this, 'notificationService', {
-    //   centralEventBus: sharedStack.centralEventBus
-    // });
+    new NotificationService(this, 'notificationService', {
+      centralEventBus: sharedStack.centralEventBus
+    });
 
-    // new CustomerContactService(this, 'customerContactService');
+    new CustomerContactService(this, 'customerContactService');
 
   }
 }
