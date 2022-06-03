@@ -116,7 +116,7 @@ export class WorkflowStep {
                 'Text': JsonPath.stringAt('$.reviewContents')
             },
             iamResources: ['*'],
-            resultPath: '$.sentimentResult'
+            resultPath: '$.SentimentResult'
         });
 
     }
