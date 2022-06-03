@@ -1,8 +1,10 @@
 import { CfnOutput, Duration, RemovalPolicy } from "aws-cdk-lib";
-import { StepFunctionsRestApi } from "aws-cdk-lib/aws-apigateway";
+import { CfnMethod, Method, MethodLoggingLevel, StepFunctionsRestApi } from "aws-cdk-lib/aws-apigateway";
+import { LoggingLevel } from "aws-cdk-lib/aws-chatbot";
 import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
 import { EventBus } from "aws-cdk-lib/aws-events";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
+import { HttpMethod } from "aws-cdk-lib/aws-lambda";
 import { RetentionDays } from "aws-cdk-lib/aws-logs";
 import { CfnIdentity } from "aws-cdk-lib/aws-pinpointemail";
 import { Pass, StateMachineType } from "aws-cdk-lib/aws-stepfunctions";
@@ -81,7 +83,13 @@ export class FrontendApiService extends Construct {
 
 
         let api = new StepFunctionsRestApi(this, 'stepFunctionsRestApi', {
-            stateMachine: stateMachine
+            stateMachine: stateMachine,
+            deploy: true,
+            cloudWatchRole: true,
+            deployOptions: {
+                loggingLevel: MethodLoggingLevel.INFO,
+                dataTraceEnabled: true
+            }
         });
 
         new CfnOutput(this, 'apiEndpoint', {
