@@ -192,6 +192,7 @@ export class WorkflowStep {
             entries: [{
                 detailType: props.eventName,
                 source: 'event-driven-cdk.sentiment-analysis',
+                eventBus: props.publishTo,
                 detail: TaskInput.fromObject({
                     'dominantLanguage': JsonPath.stringAt('$.dominantLanguage'),
                     'reviewIdentifier': JsonPath.stringAt('$.reviewIdentifier'),
