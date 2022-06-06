@@ -33,6 +33,7 @@ export class FrontendApiService extends Construct {
             removalPolicy: RemovalPolicy.DESTROY
         });
         
+        // Need to insers that row to have an initial value for reviewId. Without that, the generateCaseId will fail
         new AwsCustomResource(this, 'myCustomResource', {
             onCreate: {
                 service: 'DynamoDB',
