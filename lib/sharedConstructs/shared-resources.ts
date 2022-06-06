@@ -1,7 +1,7 @@
 import { EventBus, EventBusProps } from "aws-cdk-lib/aws-events";
 import { CfnDiscoverer } from "aws-cdk-lib/aws-eventschemas";
 import { Construct } from "constructs";
-import { CentralEventBus } from "./sharedConstructs/central-event-bus";
+import { CentralEventBus } from "./central-event-bus";
 
 export class SharedResources extends Construct {
 

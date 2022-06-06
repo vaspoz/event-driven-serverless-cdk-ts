@@ -4,7 +4,7 @@ import { EventAuditService } from './event-audit-service';
 import { FrontendApiService } from './frontend-api-service';
 import { NotificationService } from './notification-service';
 import { ReviewAnalysisService } from './review-analysis-service';
-import { SharedResources } from './shared-resources';
+import { SharedResources } from './sharedConstructs/shared-resources';
 
 export class EventDrivenServerlessCdkTsStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
