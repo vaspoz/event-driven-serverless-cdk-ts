@@ -1,7 +1,5 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
-import { AwsCustomResource, PhysicalResourceId } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
-import { CustomerContactService } from './customer-contact-service';
 import { EventAuditService } from './event-audit-service';
 import { FrontendApiService } from './frontend-api-service';
 import { NotificationService } from './notification-service';
@@ -27,8 +25,6 @@ export class EventDrivenServerlessCdkTsStack extends Stack {
     new NotificationService(this, 'notificationService', {
       centralEventBus: sharedStack.centralEventBus
     });
-
-    new CustomerContactService(this, 'customerContactService');
 
   }
 }
